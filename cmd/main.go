@@ -11,7 +11,11 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/incidents", models.GetIncidents)
+	r.GET("/incidents/:id", models.GetIncidentByID)
 	r.POST("/incidents", models.CreateIncident)
+	r.DELETE("/incidents/:id", models.DeleteIncident)
+	r.PUT("/incidents/:id", models.UpdateIncident)
+	r.PATCH("/incidents/:id/resolve", models.UpdateIncidentStatus)
 	{
 		r.Run()
 
