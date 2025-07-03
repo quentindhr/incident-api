@@ -29,7 +29,10 @@ func createTables() {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+		severity TEXT CHECK(severity IN ('Low', 'Medium', 'High')) NOT NULL,
+		status TEXT CHECK(status IN ('Open', 'In Progress', 'Resolved')) NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+		resolved_at DATETIME DEFAULT NULL
     );`
 
 	_, err := DB.Exec(query)
